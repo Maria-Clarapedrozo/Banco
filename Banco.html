@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<script>
+
+    var nome_do_usuario = prompt ("Digite seu nome: ");
+    var saldo = 100.5;
+    var senhaCorreta = 3589;
+    
+    alert("Olá, " + nome_do_usuario+"!" + "É Um prazer tê-lo (a) conosco.");
+    
+    function inicio() {
+        var opções = parseInt(prompt("Selecione uma opção \n 1) Saldo \n 2) Extrato \n 3) Saque \n 4) Depósito \n 5) Trasferência \n 6) Sair"));
+        switch (opções) {
+            case 1:
+                ver_saldo();
+                break;
+            case 2:
+                ver_extrato();
+                break;
+            case 3:
+                fazer_saque();
+                break;
+            case 4:
+                fazer_deposito();
+                break;
+            case 5:
+                fazer_trasferencia();
+                break;
+            case 6:
+                sair();
+                break;
+            default:
+                erro();
+        }
+       
+    }
+    
+    function ver_saldo() {
+        var senha = parseInt (prompt (" Digite sua senha:"));
+    
+        if( senha !== senhaCorreta) {
+            alert("Senha incorreta. Tente novamente.")
+            ver_saldo();
+        }
+          
+            alert("Seu saldo atual é: " + saldo);
+            inicio();
+    }
+    
+    function fazer_deposito() {
+        var deposito = parseFloat(prompt("Insira o valor para depósito: "));
+    
+        if ( isNaN (deposito)|| deposito === "") {
+            alert("Por favor, informe um numero. ");
+        fazer_deposito();
+        } else if (deposito <= 0) {
+            alert ("Operação não autorizada.");
+            fazer_deposito();
+        } else {
+            saldo += deposito
+            ver_saldo();
+        }
+    }
+    function fazer_saque () {
+        var senha = parseInt (prompt (" Digite sua senha:"));
+    
+    
+        if( senha !== senhaCorreta) {
+            alert("Senha incorreta. Tente novamente.")
+            fazer_saque();
+    
+        
+        }
+    
+        var saque = parseFloat(prompt("Insira o valor para saque: "));
+    
+        if ( isNaN (saque)|| saque === "") {
+        alert("Por favor, informe um numero. ");
+        fazer_saque();
+        } else if ( saldo < saque){
+            alert("Operação não autorizada.");
+            inicio();
+    
+        } else if ( saque <= 0) {
+            alert("Operação não autorizada.");
+            fazer_saque();
+        } else {
+            saldo -= saque
+            ver_saldo();
+        }
+    }
+    
+    function ver_extrato () {
+    
+        var senha = parseInt (prompt (" Digite sua senha:"));
+    
+        if( senha !== senhaCorreta) {
+            alert("Senha incorreta. Tente novamente.")
+            ver_extrato();
+        }
+    
+        alert("Saldo Anterior R$ 350 \n\n 10 JUL COMPRA NO DÉBITO \n PAG* Mercado Luz \n R$ 200,00 \n\n 15 JUL TRANSFÊRENCIA ENVIADA \n Antonio Santos \n R$ 40,00 \n\n 15 JUL COMPRA NO DÉBITO \n PAG* Padaria Viva Noite \n R$ 60,00 \n\n 27 JUL TRANSFÊRENCIA RECEBIDA \n Elane Silva \n R$ 70,00 \n\n Saldo atual R$ 120,00");
+        inicio();
+    }
+    
+    function fazer_trasferencia() {
+    
+        var senha = parseInt (prompt (" Digite sua senha:"));
+    
+        if( senha !== senhaCorreta) {
+            alert("Senha incorreta. Tente novamente.")
+            fazer_trasferencia();
+        }
+    
+        var conta = parseFloat (prompt ("Insira o numero da conta: "));
+        var transferencia = parseFloat (prompt ("Insira o valor: "));
+    
+        if (isNaN(conta)) {
+            alert("Por favor, informe um numero. ");
+            fazer_trasferencia();
+        } else if (isNaN(transferencia)) {
+            alert("Por favor, informe um numero. ");
+            fazer_trasferencia();
+        } else if (saldo < transferencia) {
+            alert("Operação não autorizada.");
+            fazer_trasferencia();
+        } else if (transferencia <= 0) {
+            alert("Operação não autorizada.");
+            fazer_trasferencia();
+        } else {
+            saldo -= transferencia
+            ver_saldo();
+        }
+        
+    }
+    function erro() {
+        alert("Por favor, informe um número entre 1 e 6.");
+    }
+    
+    function sair() {
+        alert("Muito obrigado por utilizar os serviços da MaryBank: " + nome_do_usuario + ", foi um prazer tê-lo(a) por aqui!" );
+        window.close();
+    }
+    inicio();
+    </script>
+    <body>
+        
+    </body>
+    </html>
